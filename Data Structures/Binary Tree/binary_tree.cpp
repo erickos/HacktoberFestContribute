@@ -46,6 +46,25 @@ Btree *putValue(Btree *root, int data)
     }
 }
 
+bool hasValue(Btree* root, int data){
+    if(!root)
+        return false;
+
+    queue<Btree *> q;
+    q.push(root);   
+
+    while(!q.empty()){
+        Btree* currentNode = q.front();
+        q.pop();
+
+        if(currentNode->data == data) return true;
+        if(currentNode->left) q.push(currentNode->left);
+        if(currentNode->right) q.push(currentNode->right);
+    }
+
+    return false;
+}
+
 // inorder traversal of binary tree using recursion
 void inOrder(Btree *root)
 {
